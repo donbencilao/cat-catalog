@@ -7,7 +7,10 @@ const Home = ()=>{
     const [catData,setcatData] = useState([])
     const [currentPage,setCurrentPage] = useState({page:0,catBreed:''})
     const [showLoadMore,setShowLoadMore] = useState(false)
-  
+    
+    /**
+     * Cat breed initialization
+     */
     const initCatBreeds = async ()=>{
         try{
             const result = await getCatBreeds()
@@ -24,6 +27,10 @@ const Home = ()=>{
         }
     }
 
+    /**
+     * Get all cat breed images filtered by breed id
+     * @param {*} value cat breed id
+     */
     const selectCatBreed = async(value)=>{
         try {
             setcatData([{}])
@@ -39,6 +46,12 @@ const Home = ()=>{
             alert("Apologies but we could not load new cats for you at this time! Miau!")
         }
     }
+    /**
+     * Checks for duplicate entries
+     * @param {*} prev 
+     * @param {*} newSet 
+     * @returns {Boolean} If it has duplicates, it will return true
+     */
     const checkDuplicteEntry = (prev,newSet)=>{
         let hasDuplicateItem = false
         prev.forEach(data=>{
@@ -52,6 +65,10 @@ const Home = ()=>{
         })
         return hasDuplicateItem
     }
+    /**
+     * Loads more cat images
+     * @param {*} e holds the click event object
+     */
     const loadMoreCats = async(e)=>{
         e.preventDefault()
         try {
